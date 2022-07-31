@@ -1,0 +1,326 @@
+{
+  // Place your GLOBAL snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  "Print to console": {
+    // "scope": "javascript,typescript",
+    "prefix": "log",
+    "body": ["console.log('$1');", "$2"],
+    "description": "Log output to console"
+  },
+  "querySelector": {
+    // "scope": "javascript,typescript",
+    "prefix": "qse",
+    "body": ["document.querySelector('$1')"],
+    "description": "querySelector"
+  },
+  "querySelectorAll": {
+    // "scope": "javascript,typescript",
+    "prefix": "qsa",
+    "body": ["document.querySelectorAll('$1')"],
+    "description": "querySelectorAll"
+  },
+  "addEventListener": {
+    // "scope": "javascript,typescript",
+    "prefix": "ade",
+    "body": ["document.addEventListener('click', $1)"],
+    "description": "addEventListener"
+  },
+  "Menu": {
+    //  "scope": "javascript,typescript",
+    "prefix": "menu",
+    "body": [
+    "<div class=\"header__menu menu\">"
+    "<button type=\"button\" class=\"menu__icon icon-menu\">"
+      "<span></span>"
+    "</button>"
+    "<nav class=\"menu__body\">"
+      "<ul class=\"menu__list\">"
+        "<li class=\"menu__item\"><a href=\"\" class=\"menu__link\"></a></li>"
+      "</ul>"
+    "</nav>"
+  "</div>"
+    ],
+    "description": "Menu and burger"
+  },
+  "Logo": {
+    //  "scope": "javascript,typescript",
+    "prefix": "logo",
+    "body": [
+      "<a href=\"\" class=\"header__logo\"><img src=\"@img/logo.svg\" alt=\"\" /></a>"
+    ],
+    "description": "Logo"
+  },
+  "Споллер": {
+    //  "scope": "javascript,typescript",
+    "prefix": "spoller",
+    "body": [
+      "<div data-spollers class=\"spollers\">"
+      "<div class=\"spollers__item\">"
+        "<button type=\"button\" data-spoller class=\"spollers__title\">"
+          "Заголовок спойлера"
+        "</button>"
+        "<div class=\"spollers__body\">Контент спойлера</div>"
+      "</div>"
+    "</div>"
+    ],
+    "description": "Споллер"
+  },
+  "Breakpoint md1": {
+   //  "scope": "javascript,typescript",
+   "prefix": "md1",
+   "body": [
+      "@media (max-width: \\$pc+px) {"
+         "$1"
+       "}"
+   ],
+   "description": "Breakpoint md1"
+ },
+  "Breakpoint md2": {
+   //  "scope": "javascript,typescript",
+   "prefix": "md2",
+   "body": [
+      "@media (max-width: \\$tablet) {"
+         "$1"
+       "}"
+   ],
+   "description": "Breakpoint md2"
+ },
+  "Breakpoint md3": {
+   //  "scope": "javascript,typescript",
+   "prefix": "md3",
+   "body": [
+      "@media (max-width: \\$mobile) {"
+         "$1"
+       "}"
+   ],
+   "description": "Breakpoint md3"
+ },
+ "Breakpoint md4": {
+  //  "scope": "javascript,typescript",
+  "prefix": "md4",
+  "body": [
+     "@media (max-width: \\$mobileSmall) {"
+        "$1"
+      "}"
+  ],
+  "description": "Breakpoint md4"
+},
+ "Breakpoint min-width md1": {
+   //  "scope": "javascript,typescript",
+   "prefix": "mmd1",
+   "body": [
+      "@media (min-width: \\$pc+px) {"
+         "$1"
+       "}"
+   ],
+   "description": "Breakpoint min-width md1"
+ },
+  "Breakpoint min-width md2": {
+   //  "scope": "javascript,typescript",
+   "prefix": "mmd2",
+   "body": [
+      "@media (min-width: \\$tablet) {"
+         "$1"
+       "}"
+   ],
+   "description": "Breakpoint min-width md2"
+ },
+  "Breakpoint min-width md3": {
+   //  "scope": "javascript,typescript",
+   "prefix": "mmd3",
+   "body": [
+      "@media (min-width: \\$mobile) {"
+         "$1"
+       "}"
+   ],
+   "description": "Breakpoint min-width md3"
+ },
+ "Breakpoint min-width md4": {
+  //  "scope": "javascript,typescript",
+  "prefix": "mmd4",
+  "body": [
+     "@media (min-width: \\$mobileSmall) {"
+        "$1"
+      "}"
+  ],
+  "description": "Breakpoint min-width md4"
+},
+ "Медиа запрос max-width": {
+  //  "scope": "javascript,typescript",
+  "prefix": "mw",
+  "body": [
+     "@media (max-width: $1px) {"
+        "$2"
+      "}"
+  ],
+  "description": "Медиа запрос max-width"
+},
+ "Стили в медиа запросе работают на устройствах с мишью": {
+  //  "scope": "javascript,typescript",
+  "prefix": "ah",
+  "body": [
+    "@media (any-hover: hover) {"
+      "&:hover {"
+        "$1"
+      "}"
+    "}"
+  ],
+  "description": "Стили в медиа запросе работают на устройствах с мишью"
+},
+ "Paddings": {
+   //  "scope": "javascript,typescript",
+   "prefix": "pd",
+   "body": ["padding: 0px 0px 0px 0px;"],
+   "description": "Paddings"
+ },
+ "Margin": {
+   //  "scope": "javascript,typescript",
+   "prefix": "mr",
+   "body": ["margin: 0px 0px 0px 0px;"],
+   "description": "Margins"
+ },
+ "Transition": {
+   //  "scope": "javascript,typescript",
+   "prefix": "tr",
+   "body": ["transition: $1 0.3s ease 0s;"],
+   "description": "Transition"
+ },
+ "Адаптивное свойство": {
+  //  "scope": "javascript,typescript",
+  "prefix": "av",
+  "body": [
+    "@include adaptiv-value('$1', $2, $3, $4);"
+  ],
+  "description": "Адаптивное свойство"
+},
+"Отзывчивый line-height": {
+  //  "scope": "javascript,typescript",
+  "prefix": "lh",
+  "body": [
+    "@include line-height($1, $2);"
+  ],
+  "description": "Отзывчивый line-height"
+},
+"Относительные величины в %": {
+  //  "scope": "javascript,typescript",
+  "prefix": "pr",
+  "body": [
+    "percent($1, $2)"
+  ],
+  "description": "Относительные величины в %"
+},
+"Деление 2 чисел": {
+  //  "scope": "javascript,typescript",
+  "prefix": "del",
+  "body": [
+    "divide($1, $2)"
+  ],
+  "description": "Деление 2 чисел"
+},
+"Флекс свойство": {
+  //  "scope": "javascript,typescript",
+  "prefix": "fl",
+  "body": [
+    "flex: 1 1 auto;"
+  ],
+  "description": "Флекс свойство"
+},
+"Медиа запрос для устройств с тач": {
+  //  "scope": "javascript,typescript",
+  "prefix": "ahn",
+  "body": [
+    "percent($1, $2)"
+  ],
+  "description": "Медиа запрос для устройств с тач"
+},
+"Input": {
+  //  "scope": "javascript,typescript",
+  "prefix": "inp",
+  "body": [
+    "<input autocomplete=\"off\" name=\"form[]\" data-error=\"Ошибка\" placeholder=\"\" data-value=\"\" type=\"text\" class=\"input\"/>"
+  ],
+  "description": "Input"
+},
+"Form": {
+  //  "scope": "javascript,typescript",
+  "prefix": "form",
+  "body": [
+    "<form action=\"#\" class=\"form\">"
+    "<input autocomplete=\"off\" name=\"form[]\" data-error=\"Ошибка\" placeholder=\"\" data-value=\"\" type=\"text\" class=\"input\"/>"
+    "<button type=\"submit\" class=\"form__button btn\"></button>"
+    "</form>"
+  ],
+  "description": "Form"
+},
+"Button": {
+  //  "scope": "javascript,typescript",
+  "prefix": "btn",
+  "body": [
+    "<button type=\"button\" class=\"subscribe__button btn\"></button>"
+  ],
+  "description": "Button"
+},
+"Стили для всех кроме последнего": {
+  //  "scope": "javascript,typescript",
+  "prefix": "not",
+  "body": [
+    "&:not(:last-child) {"
+      "margin-bottom: $1px;"
+    "}"
+    
+  ],
+  "description": "Стили для всех кроме последнего"
+},
+"::before": {
+  //  "scope": "javascript,typescript",
+  "prefix": "bef",
+  "body": [
+    "&::before {"
+      "content: '';"
+    "}"
+    
+  ],
+  "description": "::before"
+},
+"::after": {
+  //  "scope": "javascript,typescript",
+  "prefix": "aft",
+  "body": [
+    "&::after {"
+      "content: '';"
+    "}"
+    
+  ],
+  "description": "::after"
+},
+"box-shadow": {
+  //  "scope": "javascript,typescript",
+  "prefix": "bs",
+  "body": [
+    "box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);"
+  ],
+  "description": "box-shadow"
+},
+"swiper слайдер": {
+  //  "scope": "javascript,typescript",
+  "prefix": "swiper",
+  "body": [
+    "<div class=\"$1__slider\">"
+    "<div class=\"$1__swiper\">"
+      "<div class=\"$1__slide\"></div>"
+    "</div>"
+  "</div>"
+  ],
+  "description": "swiper слайдер"
+},
+
+
+
+
+
+}

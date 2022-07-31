@@ -93,10 +93,19 @@ body {
   // @extend %gilroy-regular;
   font-size: $fontSize;
   @include line-height(27, 18);
+  // Убирает скрол у body если открыть попап
+  .lock {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
+  // Сайт загружен
+  ._loaded & {
+  }
 }
 // убирает скрол у body если открыть попап
-body.lock {
-  overflow: hidden;
+html.menu-open body {
+  overflow-y: hidden;
 }
 
 .wrapper {
@@ -105,12 +114,16 @@ body.lock {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  &._loaded {
+  // Прижимает футер
+  > main {
+    flex: 1 1 auto;
+  }
+  //  Фикс для слайдера
+  > * {
+    min-width: 0;
   }
 }
-// > main { // Прижимаю футер
-//   flex: 1 1 auto;
-// }
+
 .page {
   // Прижимаю футер
   //   padding: 70px 0 0 0;
@@ -127,9 +140,11 @@ body.lock {
   // }
 }
 .container {
-  max-width: $containerWidth + px;
-  padding: 0 15px;
-  margin: 0 auto;
+  // *** Щитает скрипт и миксин в _vars
+  // max-width: $containerWidth + px;
+  // padding: 0 15px;
+  // margin: 0 auto;
+
   // text-align: center;
   // если адаптив по брекпоинтам
   // @media (max-width: $md1+px) {
@@ -158,7 +173,15 @@ body.lock {
 
 .btn {
   // display: inline-flex;
-  // padding: 0 15px;
+  display: inline-block;
+  padding: 0px 0px;
+  @media (any-hover: hover) {
+    &:hover {
+    }
+  }
+  &._fm {
+    width: 100%;
+  }
   // align-items: center;
   // justify-content: center;
   // text-align: center;
@@ -179,9 +202,6 @@ body.lock {
   //     background: transparent;
   //     border: 2px solid $main-color;
   //   }
-  // }
-  // &._fm {
-  //   width: 100%;
   // }
 }
 .text {
@@ -233,3 +253,195 @@ body.ie {
     visibility: hidden;
   }
 }
+
+// Отзывчивая картинка
+._ibg-contain {
+  img {
+    object-fit: contain;
+  }
+}
+
+// ===================================================================
+// *** Стрелки слайдера
+// .slider__button-wrapper {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 200px;
+//   margin-left: auto;
+//   @media (max-width: $mobile) {
+//     display: none;
+//   }
+// }
+// .slider__button {
+//   cursor: pointer;
+//   position: relative;
+//   width: 80px;
+//   height: 50px;
+//   div {
+//     position: relative;
+//     top: 24px;
+//     width: 65px;
+//     height: 3px;
+//     background-color: $mainColor;
+//     left: 3;
+//     display: block;
+//     &::after {
+//       content: '';
+//       position: absolute;
+//       width: 20px;
+//       height: 3px;
+//       top: -6px;
+//       right: -4px;
+//       background-color: $mainColor;
+//       transform: rotate(45deg);
+//     }
+//     &::before {
+//       content: '';
+//       position: absolute;
+//       width: 20px;
+//       height: 3px;
+//       top: 7px;
+//       right: -3px;
+//       background-color: $mainColor;
+//       // box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+//       transform: rotate(-45deg);
+//     }
+//   }
+// }
+// .swiper-button-prev {
+//   transform: rotate(-180deg);
+//   @media (any-hover: hover) {
+//     &:hover {
+//       animation: arrow-left 1s linear infinite;
+//     }
+//   }
+// }
+// .swiper-button-next {
+//   @media (any-hover: hover) {
+//     &:hover {
+//       animation: arrow-right 1s linear infinite;
+//     }
+//   }
+// }
+// @keyframes arrow-right {
+//   0% {
+//     left: 0;
+//   }
+//   50% {
+//     left: 10px;
+//   }
+//   100% {
+//     left: 0;
+//   }
+// }
+// @keyframes arrow-left {
+//   0% {
+//     right: 0;
+//   }
+//   50% {
+//     right: 10px;
+//   }
+//   100% {
+//     right: 0;
+//   }
+// }
+// *** Буллеты *** //
+// .image-slider .swiper-pagination-bullet {
+//   width: 20px;
+//   height: 20px;
+//   line-height: 20px;
+//   font-size: 14px;
+//   background-color: #fff;
+// }
+// .swiper-pagination {
+//   width: 100%;
+//   display: flex;
+//   margin: 0 auto;
+//   margin-bottom: 20px;
+//   position: relative;
+//   left: 50%;
+//   transform: translate(0, -50%);
+//   &-bullet {
+//     width: 15px;
+//     height: 15px;
+//     border-radius: 50%;
+//     border: 1px solid rgba($biruzeColor, 0.5);
+//     display: block;
+//     &:not(:last-child) {
+//       margin-right: 15px;
+//     }
+//     &-active {
+//       border: 1px solid $mainColor;
+//       background-color: $mainColor;
+//     }
+//   }
+//   @media (min-width: $mobile) {
+//     display: none;
+//   }
+// }
+
+// ========================
+// *** Табы ***
+// .tabs-items {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   @media (max-width: $pc+px) {
+//     overflow-x: auto;
+//     &::-webkit-scrollbar {
+//       width: 0;
+//     }
+//   }
+// }
+// // класс active нужно добавить tabs-body__елементу в home.scss
+// .tabs-body__item {
+//   &.active {
+//     display: block;
+//   }
+// }
+// .tabs-item {
+//   @include adaptiv-value('max-width', 240, 220, 1);
+//   @include adaptiv-value('height', 80, 60, 1);
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+//   box-shadow: 0px 15px 30px rgba(232, 115, 131, 0.25);
+//   border-radius: 20px;
+//   position: relative;
+//   border: 1px solid rgba($mainColor, 0.7);
+//   @include adaptiv-value('font-size', 22, 12, 1);
+//   @include line-height(24, 22);
+//   transition: all 0.3s ease 0s;
+//   fill: $mainColor;
+//   &:not(:last-child) {
+//     margin-right: 10px;
+//   }
+//   &.active {
+//     color: #fff;
+//     background-color: $mainColor;
+//     fill: #fff;
+//   }
+//   @media (any-hover: hover) {
+//     &:hover {
+//       color: #fff;
+//       background-color: $mainColor;
+//       fill: #fff;
+//     }
+//   }
+//   .tab__element {
+//     fill: inherit;
+//     width: 37px;
+//     height: 60px;
+//     margin: 0px 15px 0px 25px;
+//   }
+
+//   // делает слайдер с табов
+//   @media (max-width: $pc+px) {
+//     flex: 0 0 90%;
+//     visibility: visible;
+//     animation-duration: 1s;
+//     animation-delay: 0.2s;
+//     animation-name: slideInRight;
+//   }
+// }

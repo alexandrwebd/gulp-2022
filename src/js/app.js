@@ -27,11 +27,14 @@ flsFunctions.isWebp()
 /* Модуль для работы с меню (Бургер) */
 // flsFunctions.fullVHfix()
 
+/* Модуль параллакса мишью */
+// import './modules/parallax-mouse.js'
+
 /* 
 Модуль работы со спойлерами
 Документация: Снипет (HTML): spollers 
 */
-// flsFunctions.spollers() переделать функцию
+// flsFunctions.spollers()
 /*
 Модуоь работы с табами
 Документация: Снипет (HTML): tabs
@@ -53,6 +56,17 @@ flsFunctions.isWebp()
 */
 // flsFunctions.initPopups(false) доделать функцию
 // import './modules/popups.js'
+
+// ======================== Функции работы со скролом
+// import * as flsScroll from './modules/scroll.js'
+// * Функция добавления класса _header-scroll к хедеру
+// flsScroll.headerScroll()
+// * Плавная навигация по странице
+// flsScroll.pageNavigation()
+// * Функция липкого блока
+// flsScroll.stickyBlock()
+// * Модуль поэкранной прокрутки
+
 
 // Работа с формами ======================================================
 import * as flsForms from './modules/forms.js'
@@ -85,6 +99,22 @@ import * as flsForms from './modules/forms.js'
 // import "./modules/sliders.js"
 // Новый файл
 // import "./modules/swiper.js"
+
+// Работа с Табами ======================================================
+ // Описание в tabs.js
+// import './modules/tabs.js'
+
+// *** Кастомный селект *** ===================================================
+// Раскоментировать импорт js файла и импорт select.scss файла в style.scss
+// В файле select.js передать параметры текст плейсхолдера, id селекта, опшенсы селекта и по надобности колбек функцию для обработки выбраного селекта
+// Раскоментировать link шрифта font-awesome в head
+// В index.html добавить
+// <div class="app-select">
+//   <div class="wrap">
+//     <div id="select"></div>
+//   </div>
+// </div>
+// import './modules/select.js'
 
 // Прочее =========================================================================
 

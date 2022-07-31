@@ -1,5 +1,7 @@
 // *** FORM ***
+// Снипет HTML
 .form {
+  position: relative;
   &__row {
   }
   &__column {
@@ -7,22 +9,38 @@
   &__line {
   }
   &__input {
+    &._error {
+      box-shadow: 0 0 15px red;
+      color: red;
+      &::placeholder {
+        color: red;
+      }
+    }
+    &::placeholder {
+    }
   }
   &__button {
   }
   &__error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+    padding-left: 26px;
   }
 }
 
 // *** BUTTONS ***
-.btn {
-  display: inline-flex;
-  padding: 0 0;
-  @media (min-width: 992px) {
-    &:hover {
-    }
-  }
-  &._fm {
-    width: 100%;
-  }
-}
+// .btn {
+//   display: inline-flex;
+//   padding: 0 0;
+//   @media (min-width: 992px) {
+//     &:hover {
+//     }
+//   }
+//   &._fm {
+//     width: 100%;
+//   }
+// }

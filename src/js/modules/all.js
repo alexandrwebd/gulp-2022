@@ -65,6 +65,34 @@ window.onload = function () {
       document.querySelector('.menu__body').classList.toggle('active')
     }
 
+     // *** accordeon изменение цвета фона ==================
+
+    // Поручаю все элементы li
+    const spollerItems = document.querySelectorAll('.questions__item')
+
+    // если кликнул по кнопке
+    if (targetElement.classList.contains('questions__btn')) {
+      //  и у нее нету активного класса
+      if (
+        !targetElement.parentElement.classList.contains(
+          'questions__item--active'
+        )
+      ) {
+        // удаляю класс у всех активных элементов li
+        flsForms.removeClassest(spollerItems, 'questions__item--active')
+        // добавляю класс у родителя кнопки по которой кликнул
+        targetElement.parentElement.classList.add('questions__item--active')
+      } else if (
+        targetElement.parentElement.classList.contains(
+          'questions__item--active'
+        )
+      ) {
+        // если при клике у элемента уже есть активный класс то удаляю активный класс
+        targetElement.parentElement.classList.remove('questions__item--active')
+      }
+    }
+  }
+
     // add json data products card
     if (targetElement.classList.contains('products__more')) {
       e.preventDefault()
@@ -402,4 +430,159 @@ window.onload = function () {
       }
     })
   }
+}
+
+// Тренировка accordion ===================================================================
+
+//Универсальная FETCH функция для работы с API используя промисы(resolve, reject)
+//resolve вызываеться когда успех
+//reject вызываеться когда есть ошибка
+
+function sendRequest(method, url, body = null) {
+  const headers = {
+    'Content-Type': 'application/json',
+  }
+
+  // метод принимает 2 параметра url и обьект настроек при GET
+  return fetch(url, {
+    method: method,
+    //  body: JSON.stringify(body),
+    headers: headers,
+  }).then((response) => {
+    if (response.ok) {
+      return response.json()
+    }
+
+    return response.json().then((error) => {
+      const e = new Error('Что-то пошло не так')
+      e.data = error
+      throw e
+    })
+  })
+}
+
+const requestURL = 'https://jsonplaceholder.typicode.com/users'
+
+//тренировочный обьект
+const contentData = [
+  {
+    id: 1,
+    title: 'Title 1',
+    content: 'Content 1',
+  },
+  {
+    id: 2,
+    title: 'Title 2',
+    content: 'Content 2',
+  },
+  {
+    id: 3,
+    title: 'Title 3',
+    content: 'Content 3',
+  },
+  {
+    id: 4,
+    title: 'Title 3',
+    content: 'Content 3',
+  },
+  {
+    id: 5,
+    title: 'Title 4',
+    content: 'Content 4',
+  },
+]
+
+
+const accordionWrapper = document.querySelector('.accordeons-wrapper')
+let accordionsItems
+
+accordionWrapper.addEventListener('click', wrapperActions)
+
+
+function fillHtmlList (data) {
+    data.forEach(item => {
+        if (accordionWrapper) {
+            accordionWrapper.innerHTML += printHtml(item)
+        }
+    })
+    accordionsItems = document.querySelectorAll('.accordeons-item')
+}
+
+function printHtml(data) {
+    return `
+        <div class="accordeons-item">
+        <div class="accordeons-item-title">${data.name}</div>
+        <div class="accordeon-items-content">${data.username}</div>
+      </div>
+    `
+}
+function wrapperActions (e) {
+    const targetElement = e.target
+    if(targetElement.classList.contains('accordeons-item-title')) {
+        if (targetElement.parentElement.classList.contains('active')){
+            targetElement.parentElement.classList.remove('active')
+        } else {
+            if (accordionsItems.length > 0) {
+                accordionsItems.forEach(item => {
+                    item.classList.remove('active')
+                })
+            }
+
+            targetElement.parentElement.classList.add('active')
+        }
+
+    }
+}
+
+
+// делаю запрос по API
+const request = sendRequest('GET', requestURL)
+    .then((accordeonsData) => {
+        if (accordeonsData) {
+            // запускаю функцию распечатывания
+            fillHtmlList(accordeonsData)
+        }
+    })
+    .catch((err) => console.log(err))
+
+
+// закрывает аккордеон при клике на документ
+    document.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('accordeons-item-title')) {
+        for (let el of accordionsItems) {
+                el.classList.remove('active')
+        }
+      }
+    })
+
+// fillHtmlList()
+
+// *** Изменнение теммы сайта ===========================================================
+  if (localStorage.getItem('theme') === 'dark') {
+    document.querySelector('html').classList.add('dark')
+  }
+  document.querySelector('.theme-toggle').addEventListener('click', (e) => {
+    e.preventDefault()
+    if (localStorage.getItem('theme') === 'dark') {
+      localStorage.removeItem('theme')
+    } else {
+      localStorage.setItem('theme', 'dark')
+    }
+    addDarkClassToHTML()
+  })
+
+  function addDarkClassToHTML() {
+    try {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.querySelector('html').classList.add('dark')
+        // меняю цвет кнопки или можно менять класс иконочного шрифта
+        document.querySelector('.theme-toggle').classList.add('active')
+      } else {
+        document.querySelector('html').classList.remove('dark')
+        document.querySelector('.theme-toggle').classList.remove('active')
+      }
+    } catch (err) {}
+  }
+
+  addDarkClassToHTML()
 }
