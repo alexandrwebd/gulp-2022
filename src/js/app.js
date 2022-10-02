@@ -30,6 +30,9 @@ flsFunctions.isWebp()
 /* Модуль параллакса мишью */
 // import './modules/parallax-mouse.js'
 
+/* Модуль параллакса скроллом */
+// import './modules/parallax-scroll.js'
+
 /* 
 Модуль работы со спойлерами
 Документация: Снипет (HTML): spollers 
@@ -81,7 +84,7 @@ import * as flsForms from './modules/forms.js'
 // flsForms.formViewpass()
 
 /* Модуль звездного рейтинга */
-// flsForms.formRating()
+// import './modules/rating.js'
 
 /* Модуль работы с select. Для включения ??? (подсказок в консоли) передать true */
 // flsForms.formSelect(false)
@@ -95,9 +98,7 @@ import * as flsForms from './modules/forms.js'
 
 // Работа со слайдером (Swiper) ======================================================
 // Раскоментировать файл, пути в файле path.js, и добавить пути в функциях libs.js и libs.css 
-// Старый файл
-// import "./modules/sliders.js"
-// Новый файл
+
 // import "./modules/swiper.js"
 
 // Работа с Табами ======================================================

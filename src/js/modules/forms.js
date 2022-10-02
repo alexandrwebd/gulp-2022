@@ -1,3 +1,6 @@
+// Основные модули ==========================================
+import * as flsFunctions from './functions.js'
+
 // *** Работа с формами ***
 const forms = document.querySelectorAll('.form')
 const dataValue = document.querySelectorAll('[data-value]')
@@ -20,6 +23,7 @@ if (forms.length > 0) {
 // *** Отправляет форму, добавить async перед функцией ***
 function formSend(e) {
   e.preventDefault()
+  const targetElement = e.target
 
   // делаю валидацию
 
@@ -27,6 +31,9 @@ function formSend(e) {
   let formData
   if (forms.length > 0) {
     for (let form of forms) {
+      form.classList.remove('submit')
+      targetElement.classList.add('submit')
+
       error += formValidate(form)
       // получаю данные с полей формы
       formData = new FormData(form)
@@ -36,6 +43,10 @@ function formSend(e) {
   // formData.append('image', formImage.files[0])
 
   if (error === 0) {
+    // удаляю спаны с текстом ошибки
+    removeErrorElement()
+    // клас для лоадера
+    // form.classList.add('_sending')
     // let response = await fetch('sendmail.php', {
     //   method: 'POST',
     //   body: formData,
@@ -51,22 +62,33 @@ function formSend(e) {
     //   alert('Ошибка')
     //   form.classList.remove('_sending')
     // }
-    // Временно
+    // Временно вывожу попап
     const popupMessage = document.querySelector('.popup_subscribe-message')
     popupMessage.classList.add('open')
   } else {
     // alert('Заполните обязательные поля')
 
-    const errorElement = element('span', ['form__error'], 'Ошибка')
+    const errorElement = flsFunctions.element(
+      'span',
+      ['form__error'],
+      'Помилка'
+    )
 
-    const formError = document.querySelector('form._error')
+    const formError = document.querySelector('.form._error')
+
+    // удаляю спаны с текстом ошибки
+    removeErrorElement()
 
     formError.append(errorElement)
   }
 }
 
 // *** валидирует формы ***
-
+/**
+ *
+ * @param {Element} form
+ * @returns {Number}
+ */
 function formValidate(form) {
   let error = 0
   let formReq = document.querySelectorAll('._reg')
@@ -75,21 +97,27 @@ function formValidate(form) {
     const input = formReq[index]
     formRemoveError(input)
 
-    if (input.classList.contains('_email')) {
-      if (emailTest(input)) {
+    // валидирую только нажатую форму
+    if (form.classList.contains('submit')) {
+      if (input.classList.contains('_email')) {
+        //Проверка регуляркой емейл
+        if (emailTest(input)) {
+          formAddError(input)
+          error++
+        }
+      } else if (
+        input.getAttribute('type') === 'checkbox' &&
+        input.checked === false
+      ) {
+        // Проверка на нажатий чекбокс
         formAddError(input)
         error++
-      }
-    } else if (
-      input.getAttribute('type') === 'checkbox' &&
-      input.checked === false
-    ) {
-      formAddError(input)
-      error++
-    } else {
-      if (input.value === '') {
-        formAddError(input)
-        error++
+      } else {
+        // Проверка на пустое поле
+        if (input.value === '') {
+          formAddError(input)
+          error++
+        }
       }
     }
   }
@@ -98,16 +126,32 @@ function formValidate(form) {
 
 // *** Добавляет и удаляет класс _error у формы и инпута ***
 function formAddError(input) {
-  input.parentElement.classList.add('_error')
+  input.closest('.form').classList.add('_error')
   input.classList.add('_error')
 }
 
 function formRemoveError(input) {
-  input.parentElement.classList.remove('_error')
+  input.closest('.form').classList.remove('_error')
   input.classList.remove('_error')
 }
 
 // *** Функция теста email ***
+/**
+ *
+ * @param {Element} input
+ * @returns {String}
+ */
 function emailTest(input) {
   return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value)
+}
+
+// *** Функция удаляет нод элемент с текстом ошибки
+function removeErrorElement() {
+  const errorElementAll = document.querySelectorAll('.form__error')
+
+  if (errorElementAll.length > 0) {
+    for (let el of errorElementAll) {
+      el.remove()
+    }
+  }
 }

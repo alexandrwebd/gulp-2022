@@ -44,7 +44,7 @@
 }
 
 // *** Адаптивное свойство
-@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+@mixin adaptiv-value($property, $startSize, $minSize, $type: 1) {
   $addSize: $startSize - $minSize;
   @if $type==1 {
     // Только если меньше контейнера
@@ -79,3 +79,25 @@
 @function divide($num1, $num2) {
   @return calc($num1 / $num2);
 }
+// TO %
+@function prc($pxOne, $pxTwo) {
+  $result: math.div($pxOne, $pxTwo) * 100;
+  @return $result;
+}
+// REM %
+@function rem($px) {
+  $result: calc($px / 16) + rem;
+  @return $result;
+}
+// @function rem($px) {
+//   $result: math.div($px, 16) + rem;
+//   @return $result;
+// }
+// EM %
+@function em($px, $fontSize: 16) {
+  $result: calc($px / $fontSize) + em;
+  @return $result;
+}
+// @function em($px) {
+//   $result: math.div($px, 16) + em;
+//   @return $result;

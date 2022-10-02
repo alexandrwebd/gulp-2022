@@ -228,6 +228,17 @@ html.menu-open body {
 }
 
 // ***  позволяет делать изображение адаптивным ***
+// [class*='-ibg'] {
+//   position: relative;
+//   img {
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     top: 0;
+//     left: 0;
+//     object-fit: cover;
+//   }
+// }
 ._ibg {
   position: relative;
   img {
@@ -239,6 +250,14 @@ html.menu-open body {
     object-fit: cover;
   }
 }
+
+// Отзывчивая картинка
+._ibg-contain {
+  img {
+    object-fit: contain;
+  }
+}
+
 // Если зашли с IE
 body.ie {
   ._ibg {
@@ -251,13 +270,6 @@ body.ie {
     height: 0;
     opacity: 0;
     visibility: hidden;
-  }
-}
-
-// Отзывчивая картинка
-._ibg-contain {
-  img {
-    object-fit: contain;
   }
 }
 

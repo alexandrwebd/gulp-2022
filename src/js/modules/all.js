@@ -65,34 +65,6 @@ window.onload = function () {
       document.querySelector('.menu__body').classList.toggle('active')
     }
 
-     // *** accordeon изменение цвета фона ==================
-
-    // Поручаю все элементы li
-    const spollerItems = document.querySelectorAll('.questions__item')
-
-    // если кликнул по кнопке
-    if (targetElement.classList.contains('questions__btn')) {
-      //  и у нее нету активного класса
-      if (
-        !targetElement.parentElement.classList.contains(
-          'questions__item--active'
-        )
-      ) {
-        // удаляю класс у всех активных элементов li
-        flsForms.removeClassest(spollerItems, 'questions__item--active')
-        // добавляю класс у родителя кнопки по которой кликнул
-        targetElement.parentElement.classList.add('questions__item--active')
-      } else if (
-        targetElement.parentElement.classList.contains(
-          'questions__item--active'
-        )
-      ) {
-        // если при клике у элемента уже есть активный класс то удаляю активный класс
-        targetElement.parentElement.classList.remove('questions__item--active')
-      }
-    }
-  }
-
     // add json data products card
     if (targetElement.classList.contains('products__more')) {
       e.preventDefault()
@@ -430,159 +402,202 @@ window.onload = function () {
       }
     })
   }
-}
+  // ==================================================================
+  // ===========================================================================================
+  // *** Размер окна браузера
+  // Доступная ширина и высота
+  const mainElement = document.documentElement
+  const mainElementHeight = mainElement.clientHeight
+  const mainElementWidth = mainElement.clientWidth
 
-// Тренировка accordion ===================================================================
+  // *** Ширина и высота окна вместе с полосами прокрутки
+  const windowWidth = window.innerWidth
+  const windowHeight = window.innerHeight
 
-//Универсальная FETCH функция для работы с API используя промисы(resolve, reject)
-//resolve вызываеться когда успех
-//reject вызываеться когда есть ошибка
+  // *** Ширина и высота документа включая прокурученую часть
+  let scrollWidth = Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.body.clientWidth,
+    document.documentElement.clientWidth
+  )
+  let scrollHeight = Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.offsetHeight,
+    document.body.clientHeight,
+    document.documentElement.clientHeight
+  )
 
-function sendRequest(method, url, body = null) {
-  const headers = {
-    'Content-Type': 'application/json',
+  // *** Получить кол-во прокрученых пикселей
+  // Только для чтения
+  const windowScrollTop = window.pageYOffset
+  const windowScrollLeft = window.pageXOffset
+
+  // *** Управление прокруткой страницы
+  // Метод scrollBy(x,y) прокручивает страницу относительно ее текущего положения
+
+  function setScrollBy() {
+    window.scrollBy(0, 10000)
+    const windowScrollTop = window.pageYOffset
+    // console.log(windowScrollTop)
   }
 
-  // метод принимает 2 параметра url и обьект настроек при GET
-  return fetch(url, {
-    method: method,
-    //  body: JSON.stringify(body),
-    headers: headers,
-  }).then((response) => {
-    if (response.ok) {
-      return response.json()
-    }
-
-    return response.json().then((error) => {
-      const e = new Error('Что-то пошло не так')
-      e.data = error
-      throw e
-    })
-  })
-}
-
-const requestURL = 'https://jsonplaceholder.typicode.com/users'
-
-//тренировочный обьект
-const contentData = [
-  {
-    id: 1,
-    title: 'Title 1',
-    content: 'Content 1',
-  },
-  {
-    id: 2,
-    title: 'Title 2',
-    content: 'Content 2',
-  },
-  {
-    id: 3,
-    title: 'Title 3',
-    content: 'Content 3',
-  },
-  {
-    id: 4,
-    title: 'Title 3',
-    content: 'Content 3',
-  },
-  {
-    id: 5,
-    title: 'Title 4',
-    content: 'Content 4',
-  },
-]
-
-
-const accordionWrapper = document.querySelector('.accordeons-wrapper')
-let accordionsItems
-
-accordionWrapper.addEventListener('click', wrapperActions)
-
-
-function fillHtmlList (data) {
-    data.forEach(item => {
-        if (accordionWrapper) {
-            accordionWrapper.innerHTML += printHtml(item)
-        }
-    })
-    accordionsItems = document.querySelectorAll('.accordeons-item')
-}
-
-function printHtml(data) {
-    return `
-        <div class="accordeons-item">
-        <div class="accordeons-item-title">${data.name}</div>
-        <div class="accordeon-items-content">${data.username}</div>
-      </div>
-    `
-}
-function wrapperActions (e) {
-    const targetElement = e.target
-    if(targetElement.classList.contains('accordeons-item-title')) {
-        if (targetElement.parentElement.classList.contains('active')){
-            targetElement.parentElement.classList.remove('active')
-        } else {
-            if (accordionsItems.length > 0) {
-                accordionsItems.forEach(item => {
-                    item.classList.remove('active')
-                })
-            }
-
-            targetElement.parentElement.classList.add('active')
-        }
-
-    }
-}
-
-
-// делаю запрос по API
-const request = sendRequest('GET', requestURL)
-    .then((accordeonsData) => {
-        if (accordeonsData) {
-            // запускаю функцию распечатывания
-            fillHtmlList(accordeonsData)
-        }
-    })
-    .catch((err) => console.log(err))
-
-
-// закрывает аккордеон при клике на документ
-    document.addEventListener('click', function (e) {
-      if (!e.target.classList.contains('accordeons-item-title')) {
-        for (let el of accordionsItems) {
-                el.classList.remove('active')
-        }
-      }
-    })
-
-// fillHtmlList()
-
-// *** Изменнение теммы сайта ===========================================================
-  if (localStorage.getItem('theme') === 'dark') {
-    document.querySelector('html').classList.add('dark')
-  }
-  document.querySelector('.theme-toggle').addEventListener('click', (e) => {
-    e.preventDefault()
-    if (localStorage.getItem('theme') === 'dark') {
-      localStorage.removeItem('theme')
-    } else {
-      localStorage.setItem('theme', 'dark')
-    }
-    addDarkClassToHTML()
-  })
-
-  function addDarkClassToHTML() {
-    try {
-      if (localStorage.getItem('theme') === 'dark') {
-        document.querySelector('html').classList.add('dark')
-        // меняю цвет кнопки или можно менять класс иконочного шрифта
-        document.querySelector('.theme-toggle').classList.add('active')
-      } else {
-        document.querySelector('html').classList.remove('dark')
-        document.querySelector('.theme-toggle').classList.remove('active')
-      }
-    } catch (err) {}
+  // *** Управление прокруткой страницы
+  // Метод scrollTo(pageX, pageY) прокручивает страницу на абсолютные координаты(pageX, pageY)
+  // тоже самое что и window.scroll()
+  function setScrollTo() {
+    window.scrollTo(0, 50)
+    const windowScrollTop = window.pageYOffset
+    console.log(windowScrollTop)
   }
 
-  addDarkClassToHTML()
+  function setScrollToOptions() {
+    window.scrollTo({
+      top: 500,
+      left: 0,
+      // smooth, instant, либо auto(по умолчанию)
+      behavior: 'smooth',
+    })
+  }
+  // опции не работают в Safari
+
+  // *** Управление прокруткой страницы
+  /*
+  Вызов elem.scrollIntoView(top) прокручивает страницу,
+  чтобы elem оказался вверху у него есть один аргумент:
+
+  - если top = true(по умолчанию), то страница будет прокручена, 
+    чтобы elem появился в верхней части окна.
+    Верхний край элемента совмещен с верхней частью окна.
+  - если top = false, то страница будет прокручена, чтобы elem появился внизу. Нижний край элемента будет совмещен с нижним краем окна.
+*/
+
+  function setScrollIntoView(top) {
+    const lessonSelected = document.querySelector('body')
+    lessonSelected.scrollIntoView(top)
+  }
+
+  function setScrollIntoViewOptions(top) {
+    const lessonSelected = document.querySelector('body')
+    lessonSelected.scrollIntoView({
+      // 'start', 'center', 'end' или 'nearest'. По умолчанию 'center'.
+      block: 'center',
+      // 'start', 'center', 'end' или 'nearest'. По умолчанию 'nearest'.
+      inline: 'nearest',
+      // 'auto' или 'smooth'. По умолчанию 'smooth'
+      behavior: 'smooth',
+    })
+  }
+  // опции не работают в Safari
+
+  // *** Управление прокруткой страницы
+
+  // Запретить прокрутку
+  function setEnableDisableScroll() {
+    // document.body.style.overflow = 'hidden' или:
+    document.body.classList.toggle('scroll-lock')
+  }
+
+  // *** Метрики элементов на странице
+
+  // Получаем обьект
+  const block = document.querySelector('.how__image')
+
+  // Позиция обьекта
+  // Свойства offsetParent, offsetLeft и offsetTop
+
+  // Получаем родительский элемент относительно которого позиционирован наш обьект
+  const elementOffsetParent = block.offsetParent
+  // Получаем позицию обьекта относительно предка (offsetParent)
+  const elementOffsetLeft = block.offsetLeft
+  const elementOffsetTop = block.offsetTop
+  // Общие размеры обьекта
+  // OffsetWidth и offsetHeight
+  const elementOffsetWidth = block.offsetWidth
+  const elementOffsetHeight = block.offsetHeight
+  // Отступы внутренней части элемента от внешней.
+  // clientTop и clientLeft
+  const elementClientTop = block.clientTop
+  const elementClientLeft = block.clientLeft
+  // Положение обьекта без рамок и без полосы прокрутки
+  // clientWidth и clientHeight
+  const elementScrollWidth = block.scrollWidth
+  const elementScrollHeight = block.scrollHeight
+  // Размеры обьектов включающие в себя прокрученую (которую не видно) часть, в остальном работает как и clientWidth и clientHeight
+  const elementClientWidth = block.clientWidth
+  const elementClientHeight = block.clientHeight
+  // Размеры прокрученой области в нутри обьекта
+  // scrollLeft и scrollTop
+  const elementscrollLeft = block.scrollLeft
+  const elementscrollTop = block.scrollTop
+  // можно задавать
+  // document.querySelector(body).scrollTop = 150
+
+  // Методы управления прокруткой
+  // scrollBy, scrollTo и scrollIntoView
+  // работают и для объекта
+
+  function setElementScrollBy() {
+    block.scrollBy({
+      top: 20,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }
+
+  // *** Координаты
+  /*
+Большинство соответствующих методов JavaScript работают в
+одной из двух указанных ниже систем координат:
+
+1. Относительно окна браузера.
+	(как position: fixed, отсчёт идёт от верхнего левого угла окна.)
+	Принято обозначать clientX/clientY.
+2. Относительно документа.
+	(как position: absolute относительно <body>, отсчёт идёт от
+	верхнего левого угла документа.)
+	Принято обозначать pageX/pageY.
+
+Когда страница полностью прокручена в самое начало,
+то верхний левый угол окна совпадает с левым верхним
+углом документа, при этом обе этих системы координат тоже совпадают.
+Но если происходит прокрутка, то координаты элементов в
+контексте окна меняются, так как они двигаются,
+но в то же время их координаты относительно
+документа остаются такими же.
+
+*/
+
+  // *** Координаты относительно окна браузера
+  // getBoundingClientRect
+
+  // Получаем объект
+  // const item = document.querySelector('.how__image')
+
+  // Получаем координаты относительно окна браузера
+  // const getItemCoords = item.getBoundingClientRect()
+
+  // Получаем конкретную координату относительно окна браузера
+  // const getItemTopCoord = item.getBoundingClientRect().top
+
+  // *** Координаты относительно документа
+  // getBoundingClientRect
+
+  // Получаем объект
+  const item = document.querySelector('.how__image')
+
+  // Получаем конкретную координату относительно окна браузера
+  const getItemTopCoord = item.getBoundingClientRect().top
+
+  // Получаем конкретную координату относительно документа
+  const getItemTopDocumentCoord = getItemTopCoord + window.pageYOffset
+
+  // *** Получение объекта по координатам
+  // document.elementFromPoint(x, y);
+
+  const elem = document.elementFromPoint(100, 100)
 }

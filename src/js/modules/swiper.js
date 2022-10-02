@@ -1,4 +1,5 @@
-/*
+/* Рабочий
+
 Документация по работе в шаблоне
 Документация слайдера https://swiperjs.com/
 Снипет(HTML): swiper
@@ -67,7 +68,7 @@ function initSliders() {
 
       observer: true,
       observeParents: true,
-      slidesPerView: 1,
+      slidesPerView: 10,
       spaceBetween: 50,
       // autoHeight: true,
       speed: 800,
@@ -83,6 +84,7 @@ function initSliders() {
       pagination: {
         el: '.controll-main-block__dotts',
         clickable: true,
+        // dynamicBullets: true,
       },
       // Arrows
       // navigation: {
@@ -93,7 +95,8 @@ function initSliders() {
       //   // when window width is >= 320px
       //   320: {
       //     slidesPerView: 1.1,
-      //     spaceBetween: 15,
+      //     spaceBetween: 0,
+      //     autoHeight: true,
       //   },
       //   // when window width is >= 768px
       //   768: {
@@ -101,10 +104,14 @@ function initSliders() {
       //     spaceBetween: 20,
       //   },
       //   // when window width is >= 992px
-      //   768: {
-      //     slidesPerView: 2,
-      //     spaceBetween: 32,
+      //   992: {
+      //     slidesPerView: 3,
+      //     spaceBetween: 20,
       //   },
+       //  1370: {
+       //    slidesPerView: 4,
+       //    spaceBetween: 30,
+       //  },
       // },
       // on: {
         // Кастомная фракция
