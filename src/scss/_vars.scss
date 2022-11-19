@@ -1,29 +1,36 @@
 // *** Миксины шрифтов ***
-%gilroy-lite {
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 300;
-}
-%gilroy-regular {
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 400;
-}
+// %gilroy-lite {
+//   font-family: 'Gilroy', sans-serif;
+//   font-weight: 300;
+// }
+// %gilroy-regular {
+//   font-family: 'Gilroy', sans-serif;
+//   font-weight: 400;
+// }
 
-%gilroy-bold {
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 700;
-}
-%gilroy-black {
-  font-family: 'Gilroy', serif;
-  font-weight: 900;
-}
-%gilroy {
-  font-family: 'Gilroy', serif;
-  font-weight: 800;
-}
+// %gilroy-bold {
+//   font-family: 'Gilroy', sans-serif;
+//   font-weight: 700;
+// }
+// %gilroy-black {
+//   font-family: 'Gilroy', serif;
+//   font-weight: 900;
+// }
+// %gilroy {
+//   font-family: 'Gilroy', serif;
+//   font-weight: 800;
+// }
 
 // *** Настройки шрифта по умолчанию ***
-$fontSize: 18px; // размер шрифта по умолчанию
+$fontSize: rem(14); // размер шрифта по умолчанию
 $fontFamily: 'Arial', sans-serif; // шрифт по умолчанию
+
+// *** Основные цвета ***
+// $orangeColor: #e89f71;
+// $grayColor: #898989;
+$mainSirenColor: #7e74f1;
+$mainColor: #232e35; // Цвет шрифта по умолчанию
+// $bg-color: #edf7fa;
 
 // *** Настройки сетки ***
 $minWidth: 320px; // минимальная ширина экрана
@@ -32,32 +39,23 @@ $maxWidthContainer: 1240; // ширина ограничивающего кон�
 $containerPadding: 30; // безопасный отступ у контейнера 15px с лева и 15px с права (0 - нет отступа)
 $containerWidth: $maxWidthContainer + $containerPadding; // Ширина срабатывания первого брекпоинта
 
+// Брейк-поинты
+$pc: em(
+  $containerWidth
+); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(767.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
+// $md1: $containerWidth; // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+// $md2: 991.98; // Планшеты, некоторые телефоны в горизонтальном положении
+// $md3: 767.98; // Телефоны L
+// $md4: 479.98; // Телефоны S
+
 // Тип адаптива:
 // 1 = отзывчивость ( у контейнера нет брекпоинтов)
 // 2 = по брекпоинтам ( контейнер меняет свою ширину по брекпоинтам)
 $responsiveType: 1;
-
-// $pc: em($containerWidth); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
-// $tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
-// $mobile: em(767.98); // Телефоны L
-// $mobileSmall: em(479.98); // Телефоны S
-
-$pc: $containerWidth; // ПК, ноутбуки, некоторые планшеты в горизонтальном положени
-$tablet: 991.98px; // Планшеты, некоторые телефоны в горизонтальном положении
-$mobile: 767.98px; // Телефоны L
-$mobileSmall: 479.98px; // Телефоны S
-
-$md1: $containerWidth; // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
-$md2: 991.98; // Планшеты, некоторые телефоны в горизонтальном положении
-$md3: 767.98; // Телефоны L
-$md4: 479.98; // Телефоны S
-
-// *** Основные цвета ***
-// $orangeColor: #e89f71;
-// $grayColor: #898989;
-$mainDarkColor: #141414;
-$mainColor: #000; // Цвет шрифта по умолчанию
-// $bg-color: #edf7fa;;
 
 // *** Изменение адаптива ***
 // Стили будут применяться ко всем классам содержащим container
@@ -68,37 +66,36 @@ $mainColor: #000; // Цвет шрифта по умолчанию
   //  Отзывчивая
   [class*='container'] {
     @if ($maxWidthContainer>0) {
-      max-width: $maxWidthContainer + px;
+      max-width: rem($maxWidthContainer);
       box-sizing: content-box;
       margin: 0 auto;
     }
     @if ($containerPadding>0) {
-      padding: 0 divide($containerPadding, 2) + px;
+      padding: 0 rem(divide($containerPadding, 2));
     }
   }
-}
-else {
+} @else {
   // По брейк-поинтам
   [class*='container'] {
     margin: 0 auto;
     @if ($maxWidthContainer>0) {
-      max-width: $maxWidthContainer + px;
+      max-width: rem($maxWidthContainer);
       box-sizing: content-box;
     } @else {
       @if ($containerPadding>0) {
-        padding: 0 divide($containerPadding, 2) + px;
+        padding: 0 rem(divide($containerPadding, 2));
       }
     }
     @media (max-width: $pc) {
-      max-width: 970px;
+      max-width: rem(970);
     }
     @media (max-width: $tablet) {
-      max-width: 750px;
+      max-width: rem(750);
     }
     @media (max-width: $mobile) {
       max-width: none;
       @if ($containerPadding>0 and $maxWidthContainer>0) {
-        padding: 0 divide($containerPadding, 2) + px;
+        padding: 0 rem(divide($containerPadding, 2));
       }
     }
   }

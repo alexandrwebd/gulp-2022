@@ -1,13 +1,18 @@
+// Выбрать брекпоинт когда показывать кнопку мобильного меню
+$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(767.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
 .icon-menu {
   border: none;
   background: transparent;
   display: none;
-  @media (max-width: $mobile) {
+  @media (max-width: $tablet) {
     display: block;
     position: relative;
     // flex: 0 0 30px;
-    width: 30px;
-    height: 18px;
+    width: rem(30);
+    height: rem(18);
     cursor: pointer;
     z-index: 5;
     span,
@@ -20,6 +25,7 @@
       width: 100%;
       height: 2px;
       background-color: #fff;
+      pointer-events: none;
     }
     &::before {
       top: 0;

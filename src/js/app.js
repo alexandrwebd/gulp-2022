@@ -42,7 +42,7 @@ flsFunctions.isWebp()
 Модуоь работы с табами
 Документация: Снипет (HTML): tabs
 */
-// flsFunctions.tabs() доделать функцию
+// import './modules/tabs.js'
 
 /*
 Модуль "показать еще"
@@ -83,6 +83,9 @@ import * as flsForms from './modules/forms.js'
 /* Модуль формы "показать пароль" */
 // flsForms.formViewpass()
 
+/* Модуль формы "количество" (Quantity) */
+// flsFunctions.formQuantity()
+
 /* Модуль звездного рейтинга */
 // import './modules/rating.js'
 
@@ -110,11 +113,9 @@ import * as flsForms from './modules/forms.js'
 // В файле select.js передать параметры текст плейсхолдера, id селекта, опшенсы селекта и по надобности колбек функцию для обработки выбраного селекта
 // Раскоментировать link шрифта font-awesome в head
 // В index.html добавить
-// <div class="app-select">
-//   <div class="wrap">
+
 //     <div id="select"></div>
-//   </div>
-// </div>
+
 // import './modules/select.js'
 
 // Прочее =========================================================================

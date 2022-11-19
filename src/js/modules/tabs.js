@@ -1,19 +1,6 @@
-import * as flsForms from './functions.js'
-
+import * as flsFunctions from './functions.js'
 // Табы
 // id табам задавать уникальные
-
- // Структура HTML
-   //     <div class="tabs">
-   //        <nav class="tabs-items">
-   //          <button data-tab="#tab_1" class="tabs-item">Кнопка</button>
-   //        </nav>
-   //        <div class="tebs-body">
-   //          <div id="tab_1" class="tabs-body__item">Контент</div>
-   //        </div>
-   //      </div>
-
-
 const tabsBtn = document.querySelectorAll('.tabs-item') // кнопки
 const tabsBtns = document.querySelectorAll('.tabs-items') // блоки с кнопками для делегирования
 
@@ -28,10 +15,10 @@ function onTabClick() {
       const tabItem = e.target
       if (tabItem.classList.contains('tabs-item')) {
         // выполняю действия только если у таба нету класса active
-        if (!tabItem.classList.contains('active')) {
+        if (!tabItem.classList.contains('_tab-active')) {
           // кнопки
           const thisBtn = tabItem.parentElement.children
-          // слайдеры
+          // контент
           const tabsBody = tabItem.parentElement.nextElementSibling.children
           // получаю id с дата атрибута таба
           const tabId = tabItem.dataset.tab
@@ -39,11 +26,11 @@ function onTabClick() {
           const tabBodyItem = document.querySelector(tabId)
 
           // удаляю
-          flsForms.removeClassest(thisBtn, 'active')
-          flsForms.removeClassest(tabsBody, 'active')
+          flsFunctions.removeClassest(thisBtn, '_tab-active')
+          flsFunctions.removeClassest(tabsBody, '_tab-active')
           // добавляю
-          tabItem.classList.add('active')
-          tabBodyItem.classList.add('active')
+          tabItem.classList.add('_tab-active')
+          tabBodyItem.classList.add('_tab-active')
         }
       }
     })
@@ -51,5 +38,5 @@ function onTabClick() {
 }
 // Имитация нажатия на первую кнопку чтоб добавить класс active при загрузке
 
-document.querySelector('.courses__tabs-item').click()
+// document.querySelector('.courses__tabs-item').click()
 // document.querySelector('.reviews__tabs-items').click()

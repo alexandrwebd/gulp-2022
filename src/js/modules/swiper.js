@@ -7,7 +7,8 @@
 
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
-// Пример: {Navigation, Autoplay, Pagination, Parallax, Autoplay}
+// Пример: {Navigation, Autoplay, Pagination, Parallax, Autoplay, Thumbs}
+//Thumbs соединяет 2 слайдера
 // В 1 слайдере можно выводить или фракцию или пагинацию
 import Swiper, { Navigation, Pagination, Parallax, Autoplay } from 'swiper'
 /*
@@ -65,7 +66,9 @@ function initSliders() {
         delay: 3000,
         disableOnInteraction: false,
       },
-
+      // thumbs: { // соединяет 2 слайдера
+      //   swiper: thumbsSwiper,
+      // },
       observer: true,
       observeParents: true,
       slidesPerView: 10,

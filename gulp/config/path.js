@@ -32,6 +32,8 @@ export const path = {
     // slickJs: 'node_modules/slick-carousel/slick/slick.js',
     // swiperCss: 'node_modules/swiper/swiper.min.css',
     // swiperJs: 'node_modules/swiper/swiper-bundle.js',
+    // noUiSliderJs: 'node_modules/nouislider/dist/nouislider.js',
+    // noUiSliderCss: 'node_modules/nouislider/dist/nouislider.css',
   },
   watch: {
     //  пути к файлам которые нужно постоянно слушать

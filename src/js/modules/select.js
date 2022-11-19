@@ -30,9 +30,12 @@ class Select {
     this.options = options
     this.selectedId = options.selectedId
 
-    this.#render()
-    this.#setup()
-    getFontAwesome()
+     if (this.$el) {
+      this.#render()
+      this.#setup()
+      // getFontAwesome()
+    }
+    
   }
 
   // сделал метод работы с шаблонами приватным
@@ -94,14 +97,14 @@ class Select {
 
   open() {
     this.$el.classList.add('open')
-    this.$arrow.classList.remove('fa-chevron-down')
-    this.$arrow.classList.add('fa-chevron-up')
+    // this.$arrow.classList.remove('fa-chevron-down')
+    // this.$arrow.classList.add('fa-chevron-up')
   }
 
   close() {
     this.$el.classList.remove('open')
-    this.$arrow.classList.add('fa-chevron-down')
-    this.$arrow.classList.remove('fa-chevron-up')
+    // this.$arrow.classList.add('fa-chevron-down')
+    // this.$arrow.classList.remove('fa-chevron-up')
   }
 
   destroy() {

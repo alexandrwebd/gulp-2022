@@ -1,0 +1,49 @@
+.options {
+  position: relative;
+  &:not(:last-child) {
+    margin-bottom: em(5);
+  }
+  &__item {
+    margin: 0px 0px 10px 0px;
+  }
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    /* стилизация псевдо чекбокса при клике (добавляетьсья:checked ) */
+    &:checked + .options__label::after {
+      transform: scale(1);
+    }
+  }
+
+  &__label {
+    font-size: 16px;
+    display: inline-flex;
+    line-height: 140%;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    &::before {
+      content: '';
+      flex: 0 0 24px;
+      align-self: flex-start;
+      height: 24px;
+      background-color: #fff;
+      border-radius: 50%;
+      margin: 0px 10px 0px 0px;
+    }
+    &::after {
+      transition: transform 0.3s ease 0s;
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 16px;
+      height: 16px;
+      background-color: #7a956b;
+      border-radius: 50%;
+      transform: scale(0);
+    }
+  }
+}

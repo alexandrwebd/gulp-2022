@@ -38,9 +38,12 @@
   }
 }
 
-//*** Отзывчивый line-height
+// //*** Отзывчивый line-height
+// @mixin line-height($lineHeight, $fontSize) {
+//   line-height: calc(#{$lineHeight} / #{$fontSize} * 100%);
+// }
 @mixin line-height($lineHeight, $fontSize) {
-  line-height: calc(#{$lineHeight} / #{$fontSize} * 100%);
+  line-height: calc(#{$lineHeight} / #{$fontSize});
 }
 
 // *** Адаптивное свойство

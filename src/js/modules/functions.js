@@ -17,6 +17,103 @@ export function isWebp() {
   })
 }
 
+// ============================================================
+// *** Добавление Loaded для HTML после полной загрузки страницы
+export function addLoadedClass() {
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.documentElement.classList.add('loaded')
+    }, 0)
+  })
+}
+// *** Вспомагательные модули блокировки прокрутки и скотча
+export let bodyLockStatus = true
+export let bodylockToggle = (delay = 500) => {
+  if (document.documentElement.classList.contains('lock')) {
+    bodyUnLock(delay)
+  } else {
+    bodyLock(delay)
+  }
+}
+export let bodyUnLock = (delay = 500) => {
+  let body = document.querySelector('body')
+  if (bodyLockStatus) {
+    let lock_padding = document.querySelectorAll('[data-lp]')
+    setTimeout(() => {
+      for (let index = 0; index < lock_padding.length; index++) {
+        const el = lock_padding[index]
+        el.style.paddingRight = '0px'
+      }
+      body.style.paddingRight = '0px'
+      document.documentElement.classList.remove('lock')
+    }, delay)
+  }
+}
+export let bodyLock = (delay = 500) => {
+  let body = document.querySelector('body')
+  if (bodyLockStatus) {
+    let lock_padding = document.querySelectorAll('[data-lp]')
+    for (let index = 0; index < lock_padding.length; index++) {
+      const el = lock_padding[index]
+      el.style.paddingRight =
+        window.innerWidth -
+        document.querySelector('.wrapper').offsetWidth +
+        'px'
+    }
+    body.style.paddingRight =
+      window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px'
+    document.documentElement.classList.add('lock')
+
+    bodyLockStatus = false
+    setTimeout(function () {
+      bodyLockStatus = true
+    }, delay)
+  }
+}
+
+// ============================================================
+// *** Модуль работы с меню бургер
+export function menuInit() {
+  let iconMenu = document.querySelector('.icon-menu')
+  if (iconMenu) {
+    iconMenu.addEventListener('click', function (e) {
+      if (bodyLockStatus) {
+        bodylockToggle()
+        document.documentElement.classList.toggle('menu-open')
+      }
+    })
+  }
+}
+export function menuOpen() {
+  bodyLock()
+  document.documentElement.classList.add('menu-open')
+  // нужно дописать
+}
+// ===========================================================
+// *** Модуль формы количество
+export function formQuantity() {
+  const quantity = document.querySelector('.quantity')
+  const quantityValue = document.querySelector('.quantity input')
+  const quantityPlus = document.querySelector('.quantity__button-plus')
+  const quantityMinus = document.querySelector('.quantity__button-minus')
+  if (quantity) {
+    let count = 1
+
+    quantityPlus.addEventListener('click', () => {
+      count++
+      count = count < 10 ? `0${count}` : count
+      quantityValue.value = count
+    })
+    quantityMinus.addEventListener('click', () => {
+      if (count > 1) {
+        count--
+        count = count < 10 ? `0${count}` : count
+        quantityValue.value = count
+      }
+    })
+  }
+}
+
 // *** функция трансформирует размер изображения с байт в нормальный размер ***
 export function bytesToSize(bytes) {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
@@ -224,11 +321,11 @@ export const spollers = () => {
       spollersArray.forEach((spollersBlock) => {
         spollersBlock = matchMedia ? spollersBlock.item : spollersBlock
         if (matchMedia.matches || !matchMedia) {
-          spollersBlock.classList.add('_init')
+          spollersBlock.classList.add('_spoller-init')
           initSpollerBody(spollersBlock)
           spollersBlock.addEventListener('click', setSpollerAction)
         } else {
-          spollersBlock.classList.remove('_init')
+          spollersBlock.classList.remove('_spoller-init')
           initSpollerBody(spollersBlock, false)
           spollersBlock.removeEventListener('click', setSpollerAction)
         }

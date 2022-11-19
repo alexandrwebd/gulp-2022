@@ -83,7 +83,7 @@ h6 {
 /*--------------------*/
 
 body {
-  min-width: 320px;
+  min-width: rem(320);
   // height: 100vh;
   overflow-x: hidden;
   margin: 0;
@@ -92,9 +92,9 @@ body {
   color: $mainColor;
   // @extend %gilroy-regular;
   font-size: $fontSize;
-  @include line-height(27, 18);
+  line-height: divide(27, 18);
   // Убирает скрол у body если открыть попап
-  .lock {
+  .lock & {
     overflow: hidden;
     touch-action: none;
     overscroll-behavior: none;
@@ -128,10 +128,10 @@ html.menu-open body {
   // Прижимаю футер
   //   padding: 70px 0 0 0;
   flex: 1 1 auto;
-  @media (max-width: $md2 + px) {
+  @media (max-width: $tablet) {
     //  padding: 50px 0 0 0;
   }
-  @media (max-width: $md3+px) {
+  @media (max-width: $mobile) {
     //  padding: 30px 0 0 0;
   }
   // Фикс для слайдера

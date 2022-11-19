@@ -159,11 +159,10 @@ da.init()
 - В файле select.js передать параметры текст плейсхолдера, id селекта, опшенсы селекта и по надобности колбек функцию для обработки выбраного селекта
 - Раскоментировать link шрифта font-awesome в head
 - в index.html вставить блок
-     <div class="app-select">
-       <div class="wrap">
+   
         <div id="select"></div>
-       </div>
-     </div>
+
+# Checkbox, radio стили в файлах scss. Раскоментировать подключение в style.scss
 
 # Звездный рейтинг
 
@@ -185,6 +184,62 @@ da.init()
     </div>
     <div class="rating__value">1.6</div>
 </div>
+
+# Range slider ползунок
+Реализован с помощью плагина noUiSlider
+Установить: npm install nouislider
+Раскоментировать пути в файле path.js
+Добавить пути в файлах libsCss, libsJs
+Если нужно изменять стили - подключть из файла range.scss раскоментировав range в style.scss
+ Код Range ползунка в html
+ <div data-range class="price-filter__body">
+   <div class="price-filter__inputs">
+     <input
+       data-range-from="0"
+       value="500"
+       autocomplete="off"
+       name="form[]"
+       type="text"
+       class="price-filter__input"
+     />
+     <input
+       data-range-to="5000"
+       value="1000"
+       autocomplete="off"
+       name="form[]"
+       type="text"
+      class="price-filter__input"
+     />
+   </div>
+   <div data-range-item class="price-filter__range"></div>
+ </div>
+
+#  Tabs Табы
+Раскоментировать путь к файлу в app.js
+Значения в дата атрибутах кнопок должно совпадать с id контента и быть уникальными
+Добавляеться класс к _tab-active к активным кнопкам и контенту
+Снипет tabs
+<div class="$1">
+  <nav class="$1__navigation tabs-items">
+    <button data-tab="#$1__tab-1" type="submit" class="$1__title tabs-item _tab-active">Tab 1</button>
+    <button data-tab="#$1__tab-2" type="submit" class="$1__title tabs-item">Tab 2</button>
+    <button data-tab="#$1__tab-3" type="submit" class="$1__title tabs-item">Tab 3</button>
+  </nav>
+  <div class="$1__content">
+    <div id="$1__tab-1" class="$1__body">
+      1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat, modi.
+    </div>
+    <div id="$1__tab-2" class="$1__body">
+      2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat, modi.
+    </div>
+    <div id="$1__tab-3" class="$1__body">
+      3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat, modi.
+    </div>
+  </div>
+</div>
+
+
+
 
 ## Фичи
 
