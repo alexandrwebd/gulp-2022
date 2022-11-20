@@ -194,15 +194,23 @@
   //  "scope": "javascript,typescript",
   "prefix": "av",
   "body": [
-    "@include adaptiv-value('$1', $2, $3, $4);"
+    "@include adaptiv-value('$1', $2, $3);"
   ],
   "description": "Адаптивное свойство"
 },
+// "Отзывчивый line-height": {
+//   //  "scope": "javascript,typescript",
+//   "prefix": "lh",
+//   "body": [
+//     "@include line-height($1, $2);"
+//   ],
+//   "description": "Отзывчивый line-height"
+// },
 "Отзывчивый line-height": {
   //  "scope": "javascript,typescript",
   "prefix": "lh",
   "body": [
-    "@include line-height($1, $2);"
+    "line-height: divide($1, $2);"
   ],
   "description": "Отзывчивый line-height"
 },
@@ -255,7 +263,7 @@
     "<button type=\"submit\" class=\"form__button btn\"></button>"
     "</form>"
   ],
-  "description": "Form"
+  "description": "Form" 
 },
 "Button": {
   //  "scope": "javascript,typescript",
@@ -318,9 +326,113 @@
   ],
   "description": "swiper слайдер"
 },
-
-
-
+"Звезднеый рейтинг": {
+  //  "scope": "javascript,typescript",
+  "prefix": "rating",
+  "body": [
+    "<div class=\"rating rating_set\">"
+      "<div class=\"rating__body\">"
+        "<div class=\"rating__active\"></div>"
+        "<div class=\"rating__items\">"
+          "<input type=\"radio\" class=\"rating__item\" value=\"1\" name=\"rating\">"
+          "<input type=\"radio\" class=\"rating__item\" value=\"2\" name=\"rating\">"
+          "<input type=\"radio\" class=\"rating__item\" value=\"3\" name=\"rating\">"
+          "<input type=\"radio\" class=\"rating__item\" value=\"4\" name=\"rating\">"
+          "<input type=\"radio\" class=\"rating__item\" value=\"5\" name=\"rating\">"
+        "</div>"
+      "</div>"
+      "<div class=\"rating__value\">3.6</div>"
+    "</div>"
+  ],
+  "description": "Звезднеый рейтинг"
+},
+"Бекграунд изображение": {
+  //  "scope": "javascript,typescript",
+  "prefix": "bg",
+  "body": [
+    "background: url('@img$1') 0 0 no-repeat;"
+  ],
+  "description": "Бекграунд изображение"
+},
+"Селект": {
+  //  "scope": "javascript,typescript",
+  "prefix": "sel",
+  "body": [
+    "<select id=\"select\" name=\"form[]\" class=\"form\">"
+      "<option value=\"1\" selected>Пункт №1</option>"
+      "<option value=\"2\" selected>Пункт №2</option>"
+      "<option value=\"3\" selected>Пункт №3</option>"
+      "<option value=\"4\" selected>Пункт №4</option>"
+    "</select>"
+  ],
+  "description": "Селект"
+},
+"Чекбокс": {
+  //  "scope": "javascript,typescript",
+  "prefix": "ck",
+  "body": [
+    "<div class=\"checkbox\">"
+      "<input id=\"c_1\" name=\"form[]\" data-error=\"Ошибка\" type=\"checkbox\" value=\"1\" class=\"checkbox__input\"/>"
+      "<label for=\"c_1\" class=\"checkbox__label\"><span class=\"checkbox__text\">Текст</span></label>"
+    "</div>"
+  ],
+  "description": "Чекбокс"
+},
+"Радио": {
+  //  "scope": "javascript,typescript",
+  "prefix": "rd",
+  "body": [
+    "<div class=\"options__item\">"
+      "<input id=\"optionsId\" type=\"radio\" name=\"hand\" class=\"options__input\" value=\"right\" checked/>"
+      "<label for=\"optionsId\" class=\"options__label\"><span>Текст</span></label>"
+    "</div>"
+  ],
+  "description": "Радио"
+},
+"Quantity(Количество)": {
+  //  "scope": "javascript,typescript",
+  "prefix": "quantity",
+  "body": [
+   "<div class=\"quantity\">"
+      "<button type=\"button\" class=\"quantity__button quantity__button-minus\"></button>"
+      "<div class=\"quantity__input\">"
+        "<input autocomplete=\"off\" name=\"form[]\" type=\"text\" value=\"1\"/>"
+      "</div>"
+      "<button type=\"button\" class=\"quantity__button quantity__button-plus\"></button>"
+    "</div>"
+  ],
+  "description": "Quantity(Количество)"
+},
+"Табы": {
+  //  "scope": "javascript,typescript",
+  "prefix": "tabs",
+  "body": [
+    "<div class=\"$1\">"
+      "<nav class=\"$1__navigation tabs-items\">"
+        "<button data-tab=\"#$1__tab-1\" type=\"submit\" class=\"$1__title tabs-item _tab-active\">Tab 1</button>"
+        "<button data-tab=\"#$1__tab-2\" type=\"submit\" class=\"$1__title tabs-item\">Tab 2</button>"
+        "<button data-tab=\"#$1__tab-3\" type=\"submit\" class=\"$1__title tabs-item\">Tab 3</button>"
+      "</nav>"
+      "<div class=\"$1__content\">"
+        "<div id=\"$1__tab-1\" class=\"$1__body\">"
+          "1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat, modi."
+        "</div>"
+        "<div id=\"$1__tab-2\" class=\"$1__body\">"
+          "2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat, modi."
+        "</div>"
+        "<div id=\"$1__tab-3\" class=\"$1__body\">"
+          "3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat, modi."
+        "</div>"
+      "</div>"
+    "</div>"
+  ],
+  "description": "Табы"
+},
 
 
 }
+
+
+
+
+              
