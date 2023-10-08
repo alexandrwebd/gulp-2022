@@ -68,18 +68,37 @@ function formSend(e) {
   } else {
     // alert('Заполните обязательные поля')
 
-    const errorElement = flsFunctions.element(
-      'span',
-      ['form__error'],
-      'Помилка'
-    )
+    //***  Создаю span с ошибкой
+    // const errorElement = flsFunctions.element(
+    //   'span',
+    //   ['form__error'],
+    //   'Помилка'
+    // )
+    // Получаю форму с классом error
+    // const formError = document.querySelector('.form._error')
+    // ==============
+    // Получаю все инпуты с классом error
+    const inputErrors = document.querySelectorAll('input._error')
 
-    const formError = document.querySelector('.form._error')
-
+    // ==============
     // удаляю спаны с текстом ошибки
     removeErrorElement()
+    // Вставка ошибки в form
+    // formError.append(errorElement)
 
-    formError.append(errorElement)
+    // ==============
+    // Вставка ошибки после inputa с ошибкой
+    if (inputErrors) {
+      for (let errorItem of inputErrors) {
+        const errorElement = flsFunctions.element(
+          'span',
+          ['form__error'],
+          'Помилка'
+        )
+        errorItem.insertAdjacentElement('afterend', errorElement)
+      }
+    }
+    // ==============
   }
 }
 

@@ -1,48 +1,64 @@
-.icon-menu {
-  border: none;
-  background: transparent;
-  display: none;
-  @media (max-width: $tablet) {
-    display: block;
-    position: relative;
-    // flex: 0 0 30px;
-    width: rem(30);
-    height: rem(18);
-    cursor: pointer;
-    z-index: 5;
-    span,
-    &::before,
-    &::after {
-      content: '';
-      transition: all 0.3s ease 0s;
-      right: 0;
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background-color: #fff;
-      pointer-events: none;
-    }
-    &::before {
-      top: 0;
-    }
-    &::after {
-      bottom: 0;
-    }
-    span {
-      top: calc(50% - 1px);
-    }
-    &.menu-open {
-      span {
-        transform: scale(0);
-      }
-      &::before {
-        transform: rotate(-45deg);
-        top: calc(50% - 1px);
-      }
-      &::after {
-        transform: rotate(45deg);
-        bottom: calc(50% - 1px);
-      }
-    }
-  }
+.header {
+  // *** Липкий хедер
+  // position: fixed;
+  // width: 100%;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // z-index: 100;
+  // background-color: rgba(255, 255, 255, 0.75);
+  // *** или
+  // position: sticky;
+  // top: 0;
 }
+
+// ===================================================================
+// *** Burger
+// .icon-menu {
+//   border: none;
+//   background: transparent;
+//   display: none;
+//   @media (max-width: $mobile) {
+//     display: block;
+//     position: relative;
+//     // flex: 0 0 30px;
+//     width: rem(30);
+//     height: rem(18);
+//     cursor: pointer;
+//     z-index: 5;
+//     span,
+//     &::before,
+//     &::after {
+//       content: '';
+//       transition: all 0.3s ease 0s;
+//       right: 0;
+//       position: absolute;
+//       width: 100%;
+//       height: rem(2);
+//       background-color: #000;
+//       pointer-events: none;
+//     }
+//     &::before {
+//       top: 0;
+//     }
+//     &::after {
+//       bottom: 0;
+//     }
+//     span {
+//       top: calc(50% - rem(1));
+//     }
+//     .menu-open & {
+//       span {
+//         transform: scale(0);
+//       }
+//       &::before {
+//         transform: rotate(-45deg);
+//         top: calc(50% - rem(1));
+//       }
+//       &::after {
+//         transform: rotate(45deg);
+//         bottom: calc(50% - rem(1));
+//       }
+//     }
+//   }
+// }

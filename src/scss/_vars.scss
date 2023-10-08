@@ -1,3 +1,4 @@
+@import 'mixins';
 // *** Миксины шрифтов ***
 // %gilroy-lite {
 //   font-family: 'Gilroy', sans-serif;
@@ -33,8 +34,8 @@ $mainColor: #232e35; // Цвет шрифта по умолчанию
 // $bg-color: #edf7fa;
 
 // *** Настройки сетки ***
-$minWidth: 320px; // минимальная ширина экрана
-$maxWidth: 1440; // ширина всего полотна макета
+$minWidth: 320; // минимальная ширина экрана
+$maxWidth: 1920; // ширина всего полотна макета
 $maxWidthContainer: 1240; // ширина ограничивающего контейнера (0 - нет ограничения)
 $containerPadding: 30; // безопасный отступ у контейнера 15px с лева и 15px с права (0 - нет отступа)
 $containerWidth: $maxWidthContainer + $containerPadding; // Ширина срабатывания первого брекпоинта
@@ -66,12 +67,24 @@ $responsiveType: 1;
   //  Отзывчивая
   [class*='container'] {
     @if ($maxWidthContainer>0) {
-      max-width: rem($maxWidthContainer);
-      box-sizing: content-box;
+      max-width: rem($containerWidth);
       margin: 0 auto;
     }
     @if ($containerPadding>0) {
-      padding: 0 rem(divide($containerPadding, 2));
+      @if ($maxWidthContainer>0) {
+        padding: 0 rem(divide($containerPadding, 2));
+      } @else {
+        @include adaptiv-value(
+          'padding-left',
+          divide($containerPadding, 2),
+          15
+        );
+        @include adaptiv-value(
+          'padding-right',
+          divide($containerPadding, 2),
+          15
+        );
+      }
     }
   }
 } @else {
@@ -79,8 +92,7 @@ $responsiveType: 1;
   [class*='container'] {
     margin: 0 auto;
     @if ($maxWidthContainer>0) {
-      max-width: rem($maxWidthContainer);
-      box-sizing: content-box;
+      max-width: rem($containerWidth);
     } @else {
       @if ($containerPadding>0) {
         padding: 0 rem(divide($containerPadding, 2));

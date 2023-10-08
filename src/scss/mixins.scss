@@ -46,30 +46,57 @@
   line-height: calc(#{$lineHeight} / #{$fontSize});
 }
 
-// *** Адаптивное свойство
+// *** Адаптивное свойство на px
+// @mixin adaptiv-value($property, $startSize, $minSize, $type: 1) {
+//   $addSize: $startSize - $minSize;
+//   @if $type==1 {
+//     // Только если меньше контейнера
+//     #{$property}: $startSize + px;
+//     @media (max-width: #{$containerWidth + px}) {
+//       #{$property}: calc(
+//         #{$minSize + px} + #{$addSize} *
+//           ((100vw - 320px) / #{$containerWidth - 320})
+//       );
+//     }
+//   } @else if $type==2 {
+//     // Только если больше контейнера
+//     #{$property}: $startSize + px;
+//     @media (min-width: #{$containerWidth + px}) {
+//       #{$property}: calc(
+//         #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+//       );
+//     }
+//   } @else {
+//     // Всегда
+//     #{$property}: calc(
+//       #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+//     );
+//   }
+// }
+// Адаптивное свойство На ремах
 @mixin adaptiv-value($property, $startSize, $minSize, $type: 1) {
   $addSize: $startSize - $minSize;
   @if $type==1 {
     // Только если меньше контейнера
-    #{$property}: $startSize + px;
+    #{$property}: rem($startSize);
     @media (max-width: #{$containerWidth + px}) {
       #{$property}: calc(
-        #{$minSize + px} + #{$addSize} *
+        #{rem($minSize)} + #{$addSize} *
           ((100vw - 320px) / #{$containerWidth - 320})
       );
     }
   } @else if $type==2 {
     // Только если больше контейнера
-    #{$property}: $startSize + px;
+    #{$property}: rem($startSize);
     @media (min-width: #{$containerWidth + px}) {
       #{$property}: calc(
-        #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+        #{rem($minSize)} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
       );
     }
   } @else {
     // Всегда
     #{$property}: calc(
-      #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+      #{rem($minSize)} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
     );
   }
 }

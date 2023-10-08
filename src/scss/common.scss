@@ -1,0 +1,19 @@
+// *** Анимации
+// ===============================================================
+// вставлять @extend .animate;
+.animate {
+  transform: translate(0px, rem(100));
+  opacity: 0;
+  transition: all 1s;
+  // классы добавляються при скроле, допилить функцию
+  .prevision-section & {
+    transform: translate(0px, rem(-100));
+  }
+  .next-section & {
+    transform: translate(0px, rem(100));
+  }
+  .active-section & {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}

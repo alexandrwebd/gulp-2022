@@ -15,12 +15,11 @@ import Swiper, { Navigation, Pagination, Parallax, Autoplay } from 'swiper'
 Основные модули слайдера:
 Navigation, Autoplay, Pagination, EffectFade, Lazy, Manipulation
 Подробнее смотри https://swiperjs.com/
-/ ***  Стили Swiper
-Полный набор стилей из node_modules
- */
+/ ***  Стили Swiper */
+// Базовые стили
+// import '../../scss/swiper.scss'
+// Полный набор стилей из node_modules
 // import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
 
 // Добавление классов слайдерам
 // swiper: главному блоку (обычно имеет класс slider который передаем при инициализации Swiper), swiper-wrapper: оболочке, swiper-slide: для слайдеров. Тоесть при создании слайдера должно быть 3 вложености.
@@ -71,7 +70,7 @@ function initSliders() {
       // },
       observer: true,
       observeParents: true,
-      slidesPerView: 10,
+      slidesPerView: 3,
       spaceBetween: 50,
       // autoHeight: true,
       speed: 800,
@@ -89,11 +88,12 @@ function initSliders() {
         clickable: true,
         // dynamicBullets: true,
       },
-      // Arrows
+      // Arrows Кнопки влево/вправо
       // navigation: {
       //   nextEl: '.slider-main .slider-arrow_next',
       //   prevEl: '.slider-main .slider-arrow_prev',
       // },
+      // Брекпойнты
       //  breakpoints: {
       //   // when window width is >= 320px
       //   320: {
@@ -116,6 +116,7 @@ function initSliders() {
        //    spaceBetween: 30,
        //  },
       // },
+      // События
       // on: {
         // Кастомная фракция
       //   init: function (swiper) {

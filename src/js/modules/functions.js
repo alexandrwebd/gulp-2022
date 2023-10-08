@@ -89,7 +89,39 @@ export function menuOpen() {
   document.documentElement.classList.add('menu-open')
   // нужно дописать
 }
+
 // ===========================================================
+
+// *** Модуль анимации цифрового щетчика
+export function digitsCounter() {
+  const time = 1000 //ms
+  const step = 10
+
+  window.addEventListener('scroll', function onScroll() {
+    const scrollNumbers = document.querySelectorAll('[data-digits-counter]')
+    if (scrollNumbers.length > 0) {
+      scrollNumbers.forEach((item) => {
+        let numberTop = item.getBoundingClientRect().top
+        // start = +item.innerHTML,
+        let start = 0
+        let end = +item.dataset.digitsCounter
+        let t = Math.round(time / (end / step))
+        if (window.scrollY > numberTop - window.innerHeight / 2) {
+          this.removeEventListener('scroll', onScroll)
+          const interval = setInterval(() => {
+            item.innerHTML = ++start
+            if (start == end) {
+              clearInterval(interval)
+            }
+          }, t)
+        }
+      })
+    }
+  })
+}
+// ===========================================================
+/* Спостерігач за обьектами. Добавляет классы при скроле .prevision-section.next-section.active-section */
+export function watcher(){}
 // *** Модуль формы количество
 export function formQuantity() {
   const quantity = document.querySelector('.quantity')
@@ -171,12 +203,11 @@ export function sendRequest(method, url, body = null) {
 //     .catch(err => console.log(err))
 
 //******************************************************
-
-// *** прокрутка сраницы => кнопка прокрутки вверх ***
+// *** прокрутка сраницы => кнопка прокрутки вверх (раскоментировать, изменить класс btn) ***
 // window.addEventListener('scroll', () => {
 //   // высота экрана
 //   const windowScroll = window.innerHeight
-//   const btn = document.querySelector('.btn__scroll-top')
+//   const btn = document.querySelector('.footer__button')
 //   if (pageYOffset > windowScroll) {
 //     btn.classList.add('btn__scroll-top--active')
 //     btn.addEventListener('click', (e) => {
@@ -477,3 +508,53 @@ ibg()
 export function FLS(message) {
   console.log(message)
 }
+
+//*** Переключение языка */ ========================
+  // import { langArr } from '../../files/lang.js' // подключаем файл с обьектом перевода образец обьекта:
+  // export const langArr = {
+  //   'button-more': {
+  //     ua: 'Дізнатись детальніше',
+  //     ru: 'Узнать подробнее',
+  //   },
+  //   'menu-1': {
+  //     ua: 'Про нас',
+  //     ru: 'О нас',
+  //   },
+  // }
+  // const select = document.querySelector('.select')
+  // const value = document.querySelector('.select__input span')
+  // const allLang = ['ua', 'ru']
+  // const defaultLang = 'ua'
+
+  // select.addEventListener('click', changeURLLanguage)
+
+  // // перенаправить на url с указанием языка
+  // function changeURLLanguage() {
+  //   let lang = value.innerHTML
+  //   location.href = window.location.pathname + '#' + lang
+  //   // location.reload()
+  //   changeLanguage()
+  // }
+
+  // function changeLanguage() {
+  //   // location.reload()
+  //   let hash = window.location.hash
+  //   hash = hash.substr(1)
+  //   // console.log(hash)
+  //   if (!allLang.includes(hash)) {
+  //     location.href = window.location.pathname + '#' + defaultLang
+  //     location.reload()
+  //   }
+  //   value.innerHTML = hash
+  //   for (let key in langArr) {
+  //     let element = document.querySelector('.lng-' + key)
+  //     if (element) {
+  //       element.innerHTML = langArr[key][hash]
+  //     }
+  //   }
+  // }
+  // changeLanguage()
+
+
+
+

@@ -33,6 +33,12 @@ flsFunctions.isWebp()
 /* Модуль параллакса скроллом */
 // import './modules/parallax-scroll.js'
 
+/* Модуль анимации цифрового щетчика. Работает вместе с flsFunctions.watcher() */
+// flsFunctions.digitsCounter()
+
+/* Спостерігач за обьектами. Добавляет классы при скроле .prevision-section.next-section.active-section */
+// flsFunctions.watcher()
+
 /* 
 Модуль работы со спойлерами
 Документация: Снипет (HTML): spollers 
@@ -69,7 +75,7 @@ flsFunctions.isWebp()
 // * Функция липкого блока
 // flsScroll.stickyBlock()
 // * Модуль поэкранной прокрутки
-
+// import './modules/fullpage.js'
 
 // Работа с формами ======================================================
 import * as flsForms from './modules/forms.js'

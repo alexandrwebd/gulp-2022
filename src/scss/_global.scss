@@ -14,11 +14,11 @@
 }
 :focus,
 :active {
-  outline: none;
+  // outline: none;
 }
 a:focus,
 a:active {
-  outline: none;
+  // outline: none;
 }
 
 nav,
@@ -36,11 +36,14 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 input,
 button,
 textarea {
-  font-family: inherit;
+  font-family: $fontFamily;
+  font-size: inherit;
 }
 
 input::-ms-clear {
@@ -48,20 +51,16 @@ input::-ms-clear {
 }
 button {
   cursor: pointer;
-  background-color: transparent;
+  color: inherit;
+  background-color: inherit;
 }
 button::-moz-focus-inner {
   padding: 0;
   border: 0;
 }
 
-a,
-a:visited {
-  text-decoration: none;
-  display: inline-block;
+a {
   color: inherit;
-}
-a:hover {
   text-decoration: none;
 }
 ul li {
@@ -270,6 +269,27 @@ body.ie {
     height: 0;
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+// ===================================================================
+// Шаблоны заготовки
+// @extend %имя шаблону
+// Снипет (SCSS): ex
+
+// Щетчик для списка
+%listCounter {
+  list-style-type: none;
+  counter-reset: item;
+  li {
+    position: relative;
+    &::after {
+      counter-increment: item;
+      content: '0' counter(item);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
   }
 }
 
